@@ -1,0 +1,51 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #333;
+  color: white;
+}
+.main-wrapper{
+  max-width: 650px;
+  padding: 20px 0px;
+  margin: auto;
+}
+.title{
+  text-align: center;
+  font-size: 30px;
+}
+.todos{
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+.todos-item{
+  background-color: #3c3b3b;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.todo-btn{
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: medium;
+}
+.todo-add{
+  margin: 10px 0px;
+}
+.todo-add button{
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+.todo-add input{
+  padding: 5px 10px;
+  padding-right: 340px;
+  font-size: 15px;
+}
