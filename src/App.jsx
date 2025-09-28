@@ -4,9 +4,11 @@ export default function App() {
 
   const [title, setTitle] = useState('');
 
-  const [todos, setTodos] = useState([])
+  const localTodos = localStorage.getItem('todos')
+
+  const [todos, setTodos] = useState(JSON.parse(localTodos))
   
-  const addTodo = ()=>{
+  const addTodo = () => {
     console.log(title);
 
     const newTodo = {title, completed:false}
@@ -14,6 +16,10 @@ export default function App() {
     const UpdatedTodo = [...todos, newTodo]
 
     setTodos(UpdatedTodo)
+
+    setTitle('')
+
+    localStorage.setItem('todos' , JSON.stringify(UpdatedTodo))
     
   }
 
@@ -29,12 +35,14 @@ export default function App() {
         <button onClick={addTodo}>Add Now</button>
         </div> 
 
-        {todos.map((todo)=> {
-          <div className="todos-item">
-          <h2>{todo.title}</h2>
-          <button className="todo-btn">Done</button>
+        {todos.map((todo)=> (
+          <div key={todo.title} className="todos-item">
+            <h2>{todo.title}</h2>
+
+            <button  className="todo-btn">Done</button>
           </div>
-        })}
+        ))}
+
       </div>
     </div>
   )
