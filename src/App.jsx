@@ -23,6 +23,21 @@ export default function App() {
     
   }
 
+  const markDone = (todoItem)=>{
+    console.log(todoItem);
+
+    const UpdatedTodo = todos.map((todoElement)=>{
+      if(todoElement.title === todoItem.title){
+        return{title: todoElement.title, completed: true}
+      }
+      return todoElement;
+    })
+
+    setTodos(UpdatedTodo);
+    localStorage.setItem('todos', JSON.stringify(UpdatedTodo));
+    
+  }
+
 
   return (
     <div className="main-wrapper">
@@ -33,13 +48,16 @@ export default function App() {
         <div className="todo-add">
         <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" placeholder="Enter Todo Title" />
         <button onClick={addTodo}>Add Now</button>
+        <button onClick={()=> {localStorage.clear()
+          setTodos([])
+        }}>Clear Todos</button>
         </div> 
 
         {todos.map((todo)=> (
           <div key={todo.title} className="todos-item">
-            <h2>{todo.title}</h2>
+            <h2 style={{textDecoration: todo.completed ? 'line-through' : ''}}>{todo.title}</h2>
 
-            <button  className="todo-btn">Done</button>
+            <button onClick={()=> markDone(todo)} className="todo-btn">Done</button>
           </div>
         ))}
 
