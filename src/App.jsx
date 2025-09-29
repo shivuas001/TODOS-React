@@ -6,7 +6,7 @@ export default function App() {
 
   const localTodos = localStorage.getItem('todos')
 
-  const [todos, setTodos] = useState(JSON.parse(localTodos))
+  const [todos, setTodos] = useState(JSON.parse(localTodos) || [])
   
   const addTodo = () => {
     console.log(title);
@@ -36,7 +36,7 @@ export default function App() {
     setTodos(UpdatedTodo);
     localStorage.setItem('todos', JSON.stringify(UpdatedTodo));
     
-  }
+  } 
 
 
   return (
@@ -46,18 +46,18 @@ export default function App() {
       <div className="todos">
 
         <div className="todo-add">
-        <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" placeholder="Enter Todo Title" />
-        <button onClick={addTodo}>Add Now</button>
-        <button onClick={()=> {localStorage.clear()
+         <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" placeholder="Enter Todo Title" />
+         <button onClick={addTodo}>Add Now</button>
+         <button onClick={()=> {localStorage.clear()
           setTodos([])
-        }}>Clear Todos</button>
+         }}>Clear Todos</button>
         </div> 
 
         {todos.map((todo)=> (
           <div key={todo.title} className="todos-item">
             <h2 style={{textDecoration: todo.completed ? 'line-through' : ''}}>{todo.title}</h2>
 
-            <button onClick={()=> markDone(todo)} className="todo-btn">Done</button>
+            <button onClick={()=> markDone(todo)} className="todo-btn">{todo.completed ? 'completed': 'Mark Done'}</button>
           </div>
         ))}
 
